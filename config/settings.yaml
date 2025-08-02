@@ -1,0 +1,62 @@
+# Naukri Job Matcher Configuration
+
+# Search configurations
+searches:
+  - keywords: "Python Developer"
+    location: "Bangalore"
+    experience: [2, 5]
+  
+  - keywords: "Data Scientist"
+    location: "Mumbai"
+    experience: [1, 4]
+    
+  - keywords: "Machine Learning Engineer"
+    location: "Remote"
+    experience: [2, 6]
+
+# Scraper settings
+scraper:
+  headless: true  # Run browser in headless mode
+  max_pages: 3    # Maximum pages to scrape per search
+  scrape_full_description: true  # Scrape full job descriptions
+  wait_time: 2    # Wait time between requests (seconds)
+  retry_attempts: 3
+
+# Matcher settings
+matcher:
+  threshold: 70  # Minimum match percentage (0-100)
+  use_semantic_matching: true  # Use ML-based semantic matching
+  weights:
+    keyword: 0.20     # Weight for keyword matching
+    tfidf: 0.25      # Weight for TF-IDF similarity
+    semantic: 0.25   # Weight for semantic similarity
+    skills: 0.30     # Weight for skills matching
+
+# Notification settings
+notifications:
+  email:
+    enabled: true
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    from_email: "your-email@gmail.com"
+    to_email: "your-email@gmail.com"
+    subject: "New Job Matches Found!"
+    
+  desktop:
+    enabled: true
+    
+# Database settings
+database:
+  path: "data/jobs.db"
+  
+# Logging settings
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "data/logs/naukri_matcher.log"
+  
+# Schedule settings (for automated runs)
+schedule:
+  enabled: false
+  interval: "daily"  # Options: hourly, daily, weekly
+  time: "09:00"     # Time for daily runs (24-hour format)
