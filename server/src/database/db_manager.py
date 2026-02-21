@@ -3,13 +3,12 @@ Database Manager for storing jobs and matches
 """
 
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import List, Dict, Optional
-from sqlalchemy import create_engine, Column, String, Integer, Float, DateTime, Text, JSON
+from sqlalchemy import func, desc, create_engine, Column, String, Integer, Float, DateTime, Text, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.exc import IntegrityError
-
 from src.utils.logger import setup_logger
 
 Base = declarative_base()
@@ -243,8 +242,3 @@ class DatabaseManager:
     def close(self):
         """Close database connection"""
         self.session.close()
-
-
-# Add missing imports at the top
-from datetime import timedelta
-from sqlalchemy import func, desc
